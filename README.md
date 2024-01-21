@@ -1,5 +1,6 @@
-# GameNightScout-frontend
-
-Frontend repo za GameNightScout
-
-Test commit
+- Naziv aplikacije: GameNightScout
+- Sastav tima: Branimir Kuveždić
+- Fakultet informatike u Puli (https://fipu.unipu.hr/)
+- Kolegij: Web aplikacije (ntankovic.unipu.hr/wa)
+- Mentor: doc. dr. sc. Nikola Tanković (ntankovic.unipu.hr)
+- Zaduženja (planirana) po članu tima - Branimir Kuveždić implementira sve funkcionalnosti aplikacije
