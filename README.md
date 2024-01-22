@@ -1,3 +1,3 @@
 # GameNightScout-frontend
 
-Frontend repo za GameNightScout
+testiranje commitanja frontendPrototip brancha
