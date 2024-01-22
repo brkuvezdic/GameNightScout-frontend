@@ -1,20 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { getEvents } from "../store/store";
 
 function Featured() {
-  const events = [
-    { title: "Game Night 1", description: "Opis događaja 1" },
-    { title: "Game Night 2", description: "Opis događaja 2" },
-    { title: "Game Night 3", description: "Opis događaja 3" },
-    { title: "Game Night 4", description: "Opis događaja 4" },
-    { title: "Game Night 5", description: "Opis događaja 5" },
-    { title: "Game Night 6", description: "Opis događaja 6" },
-    { title: "Game Night 7", description: "Opis događaja 7" },
-    { title: "Game Night 8", description: "Opis događaja 8" },
-    { title: "Game Night 9", description: "Opis događaja 9" },
-  ];
+  const navigate = useNavigate();
+  const events = getEvents();
 
   while (events.length < 9) {
-    events.push({ title: "New Event", description: "Opis novog događaja" });
+    events.push({
+      id: events.length + 1,
+      title: "New Event",
+      description: "Opis novog događaja",
+    });
+  }
+
+  function handleEventClick(eventId) {
+    navigate(`/selected-featured-event/${eventId}`);
   }
 
   return (
@@ -24,7 +25,8 @@ function Featured() {
         {events.map((event, index) => (
           <div
             key={index}
-            className="flex flex-col items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-lg p-4"
+            className="flex flex-col items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-lg p-4 cursor-pointer"
+            onClick={() => handleEventClick(event.id)}
           >
             <div className="bg-white h-32 w-32 flex items-center justify-center rounded-full mb-4">
               <span className="text-2xl font-bold text-gray-800">

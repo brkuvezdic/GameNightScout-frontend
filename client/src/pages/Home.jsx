@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Featured from "../components/Featured";
 
 function HomePage() {
   return (
@@ -19,6 +20,7 @@ function HomePage() {
           Pridružite se sada
         </Link>
       </div>
+      <Featured />
     </div>
   );
 }
