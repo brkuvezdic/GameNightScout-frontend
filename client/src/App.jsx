@@ -1,9 +1,7 @@
-// App.jsx
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import Explore from "./pages/Explore";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
@@ -16,9 +14,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/explore" element={<Explore />} />
         <Route
           path="/selected-featured-event/:eventId"
           element={<SelectedFeaturedEvent />}

@@ -77,7 +77,64 @@ const events = [
   },
 ];
 
-export default events;
+const exploreEvents = [
+  {
+    id: 10,
+    title: "Kartanje s Prijateljima",
+    description: "Opustite se uz večer kartanja s prijateljima i obitelji.",
+    organizer: "Igrači u Srcu",
+    date: new Date(2024, 8, 15),
+    city: "Zagreb",
+    genre: "Kartanje",
+  },
+  {
+    id: 11,
+    title: "Strategijski Turnir",
+    description: "Testirajte svoje strategijske vještine na ovom turniru.",
+    organizer: "Strategijski Majstori",
+    date: new Date(2024, 9, 5),
+    city: "Split",
+    genre: "Strategijske Igre",
+  },
+  {
+    id: 12,
+    title: "Retro Gaming Night",
+    description: "Povratak u prošlost uz klasike retro igara.",
+    organizer: "Nostalgija Gamers",
+    date: new Date(2024, 10, 20),
+    city: "Rijeka",
+    genre: "Retro Igre",
+  },
+  {
+    id: 13,
+    title: "Maraton Društvenih Igra",
+    description: "Cijeli dan zabave s raznim društvenim igrama.",
+    organizer: "Igrački Maratonci",
+    date: new Date(2024, 11, 10),
+    city: "Osijek",
+    genre: "Društvene Igre",
+  },
+  {
+    id: 14,
+    title: "VR Igre Noć",
+    description: "Iskusite virtualnu stvarnost u igrama različitih žanrova.",
+    organizer: "VRXperience",
+    date: new Date(2024, 12, 2),
+    city: "Pula",
+    genre: "Virtualna Stvarnost",
+  },
+  {
+    id: 15,
+    title: "Obiteljska Igračka Fešta",
+    description: "Druženje i igre za cijelu obitelj!",
+    organizer: "Igrači u Obitelji",
+    date: new Date(2024, 1, 15),
+    city: "Dubrovnik",
+    genre: "Obiteljske Igre",
+  },
+];
+
+export { events, exploreEvents };
 
 export function getEvents() {
   return events;

@@ -14,10 +14,10 @@ function HomePage() {
       </p>
       <div className="flex justify-center">
         <Link
-          to="/signup"
+          to="/explore"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Pridružite se sada
+          Pregledaj događaje
         </Link>
       </div>
       <Featured />
