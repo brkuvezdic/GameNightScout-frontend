@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import SelectedFeaturedEvent from "./pages/selectedFeaturedEvent";
-import MyEvents from "./pages/MyEvents";
+import AddEvent from "./pages/AddEvent";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/my-events" element={<MyEvents />} />
+        <Route path="/add-event" element={<AddEvent />} />
 
         <Route
           path="/selected-featured-event/:eventId"

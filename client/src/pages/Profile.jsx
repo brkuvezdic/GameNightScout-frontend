@@ -18,13 +18,13 @@ export default function Profile() {
       </div>
       <div className="mb-4">
         <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-          Dodaj Event
+          Pregledaj moje evente
         </button>
       </div>
       <div>
-        <Link to="/my-events">
+        <Link to="/add-event">
           <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-            Pogledaj Moje Evente
+            Dodaj event
           </button>
         </Link>
       </div>
