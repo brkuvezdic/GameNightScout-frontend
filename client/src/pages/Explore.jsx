@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { exploreEvents } from "../store/store";
+import { useNavigate } from "react-router-dom";
+import { getEvents } from "../store/store";
 
 const Explore = () => {
+  const navigate = useNavigate();
   const [selectedCity, setSelectedCity] = useState("");
   const [events, setEvents] = useState([]);
+
+  function handleEventClick(eventId) {
+    navigate(`/selected-featured-event/${eventId}`);
+  }
 
   useEffect(() => {
     setEvents(exploreEvents);
@@ -15,7 +22,7 @@ const Explore = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Svi događaji</h2>
+      <h2 className="text-2xl font-bold mb-4">Istaknuti događaji</h2>
       <select
         onChange={(e) => setSelectedCity(e.target.value)}
         value={selectedCity}

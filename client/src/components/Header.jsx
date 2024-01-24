@@ -48,6 +48,15 @@ export default function Header() {
                 Sign in
               </Link>
             </li>
+            {/* Dodajte profilnu opciju */}
+            <li>
+              <Link
+                to="/profile"
+                className="hover:text-orange-500 transition duration-300"
+              >
+                Profile
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

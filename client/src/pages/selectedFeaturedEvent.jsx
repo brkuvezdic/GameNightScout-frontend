@@ -1,9 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../store/store";
+
 function SelectedFeaturedEvent() {
   const { eventId } = useParams();
   const event = getEventById(Number(eventId));
+  console.log(eventId);
+  if (!event) {
+    return <div>Event not found</div>;
+  }
 
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-sky-300 shadow-md rounded-lg">
