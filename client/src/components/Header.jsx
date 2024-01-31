@@ -1,8 +1,11 @@
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
 import { GiTabletopPlayers } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <header className="bg-blue-900 text-gray-200 shadow-md">
       <div className="flex p-4 justify-between items-center max-w-6xl mx-auto">
@@ -17,39 +20,39 @@ export default function Header() {
             placeholder="Search events..."
             className="bg-transparent focus:outline-none text-white placeholder-gray-300 pl-4 pr-2 py-1 w-48"
           />
-          <button type="submit" className="p-2">
-            <FaSearch className="text-orange-500" />
-          </button>
+          <FaSearch className="text-orange-500" />
         </form>
 
-        <nav>
-          <ul className="flex gap-4">
+        <ul className="flex gap-4">
+          <Link to="/">
             <li>
-              <Link
-                to="/"
-                className="hover:text-orange-500 transition duration-300"
-              >
+              <span className="hover:text-orange-500 transition duration-300">
                 Home
-              </Link>
+              </span>
             </li>
+          </Link>
+          <Link to="/about">
             <li>
-              <Link
-                to="/about"
-                className="hover:text-orange-500 transition duration-300"
-              >
+              <span className="hover:text-orange-500 transition duration-300">
                 About
-              </Link>
+              </span>
             </li>
-            <li>
-              <Link
-                to="/sign-in"
-                className="hover:text-orange-500 transition duration-300"
-              >
-                Sign in
-              </Link>
-            </li>
-          </ul>
-        </nav>
+          </Link>
+          <Link to="/profile">
+            {currentUser ? (
+              <li>
+                {}
+                <FaUser className="text-orange-500" />
+              </li>
+            ) : (
+              <li>
+                <span className="hover:text-orange-500 hover:underline">
+                  Sign in
+                </span>
+              </li>
+            )}
+          </Link>
+        </ul>
       </div>
     </header>
   );
