@@ -11,6 +11,13 @@ export default function CreateListing() {
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
+    name: "",
+    description: "",
+    address: "",
+    city: "",
+    genre: "",
+    slot: 6,
+    ageOver18: false,
   });
 
   const [imageUploadError, setImageUploadError] = useState(false);
@@ -70,10 +77,6 @@ export default function CreateListing() {
     });
   };
 
-  const handleGenreChange = (event) => {
-    setSelectedGenre(event.target.value);
-  };
-
   const genreOptions = [
     "Cooperative games",
     "Role-playing game",
@@ -95,6 +98,27 @@ export default function CreateListing() {
       imageUrls: formData.imageUrls.filter((_, i) => i !== index),
     });
   };
+
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value);
+    setFormData({ ...formData, genre: event.target.value });
+  };
+
+  const handleChange = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setFormData({ ...formData, [e.target.id]: value });
+
+    if (e.target.id === "slot") {
+      if (e.target.value < 6) {
+        setFormData({ ...formData, slot: 6 });
+      }
+    }
+
+    if (e.target.id === "ageOver18") {
+      setFormData({ ...formData, ageOver18: e.target.checked });
+    }
+  };
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
@@ -110,6 +134,8 @@ export default function CreateListing() {
             maxLength="32"
             minLength="1"
             required
+            onChange={handleChange}
+            value={formData.name}
           />
           <input
             type="text"
@@ -119,6 +145,8 @@ export default function CreateListing() {
             maxLength="32"
             minLength="1"
             required
+            onChange={handleChange}
+            value={formData.city}
           />
           <textarea
             type="text"
@@ -126,6 +154,8 @@ export default function CreateListing() {
             className="border p-3 rounded-lg"
             id="description"
             required
+            onChange={handleChange}
+            value={formData.description}
           />
           <input
             type="text"
@@ -133,10 +163,18 @@ export default function CreateListing() {
             className="border p-3 rounded-lg"
             id="address"
             required
+            onChange={handleChange}
+            value={formData.address}
           />
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-              <input type="checkbox" id="ageover18" className="w-5" />
+              <input
+                type="checkbox"
+                id="ageOver18"
+                className="w-5"
+                onChange={handleChange}
+                value={formData.ageOver18}
+              />
               <span>Age over 18</span>
             </div>
           </div>
@@ -147,6 +185,8 @@ export default function CreateListing() {
               min="6"
               required
               className="p-3 border border-color-gray-500 rounded-lg"
+              onChange={handleChange}
+              value={formData.slot}
             />
             <p>Player slots</p>
           </div>
