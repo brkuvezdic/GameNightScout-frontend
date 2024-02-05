@@ -7,10 +7,12 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const [files, setFiles] = useState([]);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     imageUrls: [],
     name: "",
@@ -111,6 +113,10 @@ export default function CreateListing() {
     e.preventDefault();
 
     try {
+      if (formData.imageUrls.length === 0) {
+        return setError("You need to upload at least one image");
+      }
+
       setLoading(true);
       setError(false);
       const res = await fetch("/api/listing/create", {
@@ -129,6 +135,7 @@ export default function CreateListing() {
       if (data.success === false) {
         setError(data.message);
       }
+      navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
