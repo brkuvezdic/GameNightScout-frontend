@@ -32,6 +32,7 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showMyEventsError, setShowMyEventsError] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -120,6 +121,21 @@ export default function Profile() {
       dispatch(signOutUserSuccess(data));
     } catch (error) {
       dispatch(signOutUserFailure(error.message));
+    }
+  };
+
+  const handleShowMyEvents = async () => {
+    try {
+      setShowMyEventsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowMyEventsError(true);
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      setShowMyEventsError(true);
     }
   };
 
@@ -214,6 +230,12 @@ export default function Profile() {
       <p className="text-red-600 mt-5">{error ? error : ""}</p>
       <p className="text-green-600 mt-5">
         {updateSuccess ? "User is updated successfully!" : ""}
+      </p>
+      <button onClick={handleShowMyEvents} className="text-green-600 w-full">
+        My events
+      </button>
+      <p className="text-red-600 mt-5">
+        {showMyEventsError ? "Error fetching events" : ""}
       </p>
     </div>
   );
