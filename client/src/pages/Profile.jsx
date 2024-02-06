@@ -33,6 +33,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showMyEventsError, setShowMyEventsError] = useState(false);
+  const [userEvents, setUserEvents] = useState([]);
 
   useEffect(() => {
     if (file) {
@@ -124,6 +125,22 @@ export default function Profile() {
     }
   };
 
+  const handleEventDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setUserEvents((prev) => prev.filter((event) => event._id !== listingId));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleShowMyEvents = async () => {
     try {
       setShowMyEventsError(false);
@@ -133,14 +150,14 @@ export default function Profile() {
         setShowMyEventsError(true);
         return;
       }
-      console.log(data);
+      setUserEvents(data);
     } catch (error) {
       setShowMyEventsError(true);
     }
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
+    <div className="bg-gray-100 p-5 max-w-lg mx-auto rounded-lg shadow-lg">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -152,19 +169,22 @@ export default function Profile() {
         />
         <div
           onClick={() => fileRef.current.click()}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+          className="relative rounded-full h-32 w-32 overflow-hidden cursor-pointer self-center mt-2 bg-gray-300"
         >
           {fileUploadError ? (
             <DefaultAvatar />
           ) : formData.avatar || currentUser.avatar ? (
             <img
               src={formData.avatar || currentUser.avatar}
-              className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+              className="object-cover w-full h-full"
               alt="User Avatar"
             />
           ) : (
             <DefaultAvatar />
           )}
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition duration-300 opacity-0 hover:opacity-100">
+            <span className="text-white">Change Avatar</span>
+          </div>
         </div>
         <p className="text-sm self-center">
           {fileUploadError ? (
@@ -181,7 +201,7 @@ export default function Profile() {
         </p>
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           id="username"
           className="border p-3 rounded-lg"
           defaultValue={currentUser.username}
@@ -189,7 +209,7 @@ export default function Profile() {
         />
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           id="email"
           className="border p-3 rounded-lg"
           defaultValue={currentUser.email}
@@ -197,46 +217,91 @@ export default function Profile() {
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           id="password"
           className="border p-3 rounded-lg"
           onChange={handleChange}
         />
         <button
           disabled={loading}
-          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-3 uppercase transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           {loading ? "Loading..." : "Update"}
         </button>
         <Link
-          className="bg-green-600 text-white p-4 rounded-lg uppercase text-center hover:opacity-96s"
-          to={"/create-listing"}
+          className="bg-green-600 text-white p-4 rounded-lg uppercase text-center hover:bg-green-700 transition duration-300"
+          to="/create-listing"
         >
-          Create event
+          Create Event
         </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span
           onClick={handleDeleteUser}
-          className="text-red-600 cursor-pointer"
+          className="text-red-600 cursor-pointer hover:underline"
         >
-          Delete account
+          Delete Account
         </span>
-        <span onClick={handleSignOut} className="text-red-600 cursor-pointer">
-          Sign out
+        <span
+          onClick={handleSignOut}
+          className="text-red-600 cursor-pointer hover:underline"
+        >
+          Sign Out
         </span>
       </div>
 
       <p className="text-red-600 mt-5">{error ? error : ""}</p>
       <p className="text-green-600 mt-5">
-        {updateSuccess ? "User is updated successfully!" : ""}
+        {updateSuccess ? "User updated successfully!" : ""}
       </p>
-      <button onClick={handleShowMyEvents} className="text-green-600 w-full">
-        My events
-      </button>
+      <div className="flex justify-center items-center mt-5">
+        <button
+          onClick={handleShowMyEvents}
+          className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg uppercase text-center transition duration-300"
+        >
+          My Events
+        </button>
+      </div>
       <p className="text-red-600 mt-5">
         {showMyEventsError ? "Error fetching events" : ""}
       </p>
+
+      {userEvents && userEvents.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h1 className="text-center mt-7 text-2xl font-semibold">My Events</h1>
+          {userEvents.map((listing) => (
+            <div
+              key={listing._id}
+              className="bg-white rounded-lg p-3 flex justify-between items-center gap-4 shadow-md hover:shadow-lg transition duration-300"
+            >
+              <Link to={`/listing/${listing._id}`}>
+                <img
+                  src={listing.imageUrls[0]}
+                  alt="Event Cover"
+                  className="h-16 w-16 object-cover"
+                />
+              </Link>
+              <Link
+                className="text-slate-700 font-semibold hover:underline truncate flex-1"
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.name}</p>
+              </Link>
+              <div className="flex flex-col item-center">
+                <button
+                  onClick={() => handleEventDelete(listing._id)}
+                  className="text-red-600 uppercase hover:underline"
+                >
+                  Delete
+                </button>
+                <button className="text-green-600 uppercase hover:underline">
+                  Edit
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
