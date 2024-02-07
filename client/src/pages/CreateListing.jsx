@@ -20,6 +20,7 @@ export default function CreateListing() {
     address: "",
     city: "",
     genre: "",
+    time: "", 
     slot: 6,
     ageOver18: false,
   });
@@ -144,7 +145,13 @@ export default function CreateListing() {
   const handleChange = (e) => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.id]: value });
+
+    if (e.target.id === "time") {
+      const formattedTime = value.replace(" ", "T");
+      setFormData({ ...formData, [e.target.id]: formattedTime });
+    } else {
+      setFormData({ ...formData, [e.target.id]: value });
+    }
 
     if (e.target.id === "slot") {
       if (e.target.value < 6) {
@@ -156,6 +163,7 @@ export default function CreateListing() {
       setFormData({ ...formData, ageOver18: e.target.checked });
     }
   };
+
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
@@ -203,6 +211,16 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.address}
           />
+          <input
+            type="datetime-local" 
+            placeholder="Time"
+            className="border p-3 rounded-lg"
+            id="time"
+            required
+            onChange={handleChange}
+            value={formData.time}
+          />
+
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
               <input

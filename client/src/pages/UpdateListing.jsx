@@ -40,6 +40,12 @@ export default function CreateListing() {
         console.log(data.message);
         return;
       }
+
+      if (data.time) {
+        const formattedTime = new Date(data.time).toISOString().slice(0, -8);
+        data.time = formattedTime;
+      }
+
       setFormData(data);
     };
     fetchListing();
@@ -217,6 +223,15 @@ export default function CreateListing() {
             required
             onChange={handleChange}
             value={formData.address}
+          />
+          <input
+            type="datetime-local"
+            placeholder="Time"
+            className="border p-3 rounded-lg"
+            id="time"
+            required
+            onChange={handleChange}
+            value={formData.time}
           />
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
