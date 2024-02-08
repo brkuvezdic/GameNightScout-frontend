@@ -1,10 +1,29 @@
 import { FaSearch, FaUser } from "react-icons/fa";
 import { GiTabletopPlayers } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, []);
 
   return (
     <header className="bg-blue-900 text-gray-200 shadow-md">
@@ -14,13 +33,20 @@ export default function Header() {
           <h1 className="font-light text-2xl">GameNightScout</h1>
         </Link>
 
-        <form className="flex items-center bg-blue-800 p-2 rounded-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center bg-blue-800 p-2 rounded-lg"
+        >
           <input
             type="text"
             placeholder="Search events..."
             className="bg-transparent focus:outline-none text-white placeholder-gray-300 pl-4 pr-2 py-1 w-48"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <FaSearch className="text-orange-500" />
+          <button>
+            <FaSearch className="text-orange-500" />
+          </button>
         </form>
 
         <ul className="flex gap-4">
@@ -41,7 +67,6 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <li>
-                {}
                 <FaUser className="text-orange-500" />
               </li>
             ) : (
