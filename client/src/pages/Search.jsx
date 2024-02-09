@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import EventItem from "../components/EventItem";
 
 export default function Search() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [availableCities, setAvailableCities] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
     if (!submitted) return;
@@ -26,6 +28,8 @@ export default function Search() {
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
       setLoading(false);
+
+      console.log(data); // Log the data here
 
       const cities = [...new Set(data.map((event) => event.city))];
       setAvailableCities(cities);
@@ -63,7 +67,7 @@ export default function Search() {
         return isFiltered;
       });
 
-      console.log(filteredEvents);
+      setFilteredEvents(filteredEvents);
     };
 
     fetchEvents();
@@ -189,6 +193,21 @@ export default function Search() {
         <h1 className="text-3xl font-semibold border-b p-3 text-gray-700 mt-5">
           Event results:
         </h1>
+        <div className="p-7 flex flex-wrap gap-4">
+          {!loading && filteredEvents.length === 0 && (
+            <p className="text-xl text-slate-700">No event found!</p>
+          )}
+          {loading && (
+            <p className="text-xl text-slate-700 text-center w-full">
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            filteredEvents &&
+            filteredEvents.map((event) => (
+              <EventItem key={event._id} event={event} />
+            ))}
+        </div>
       </div>
     </div>
   );
