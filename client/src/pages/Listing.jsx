@@ -70,7 +70,7 @@ export default function Listing() {
           </Swiper>
           <div className="p-4">
             <h2 className="text-3xl font-bold mb-2">{listing.name}</h2>
-            <p className="text-lg">{listing.description}</p>
+            <p className="text-lg break-words">{listing.description}</p>
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div className="flex items-center">
                 <FaCity className="mr-2 text-gray-600" />

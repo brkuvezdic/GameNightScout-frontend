@@ -29,8 +29,6 @@ export default function Search() {
       const data = await res.json();
       setLoading(false);
 
-      console.log(data); // Log the data here
-
       const cities = [...new Set(data.map((event) => event.city))];
       setAvailableCities(cities);
 
@@ -76,7 +74,6 @@ export default function Search() {
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
 
-    // Special handling for the sort filter
     if (id === "sort") {
       const [sortValue, orderValue] = value.split("_");
       setFilterData((prevState) => ({
@@ -189,10 +186,13 @@ export default function Search() {
           </button>
         </form>
       </div>
-      <div className="w-full md:w-2/3">
+      <div className="w-full md:flex-grow">
         <h1 className="text-3xl font-semibold border-b p-3 text-gray-700 mt-5">
           Event results:
         </h1>
+        <p className="text-xl text-gray-700 p-3">
+          Filtered Events: {filteredEvents.length}
+        </p>
         <div className="p-7 flex flex-wrap gap-4">
           {!loading && filteredEvents.length === 0 && (
             <p className="text-xl text-slate-700">No event found!</p>
