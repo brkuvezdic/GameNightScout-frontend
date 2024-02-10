@@ -19,6 +19,7 @@ export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [creator, setCreator] = useState(null);
 
   useEffect(() => {
     async function fetchListing() {
@@ -45,6 +46,21 @@ export default function Listing() {
     }
     fetchListing();
   }, [params.listingId]);
+
+  useEffect(() => {
+    if (listing) {
+      const fetchCreator = async () => {
+        try {
+          const res = await fetch(`/api/user/${listing.userRef}`);
+          const data = await res.json();
+          setCreator(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchCreator();
+    }
+  }, [listing]);
 
   return (
     <main className="flex flex-col items-center justify-start min-h-screen pt-10 bg-gray-100">
@@ -97,6 +113,10 @@ export default function Listing() {
               <div className="col-span-2 flex items-center">
                 <SiRiotgames className="mr-2 text-gray-600" />
                 <p className="font-semibold">Genre: {listing.genre}</p>
+              </div>
+
+              <div>
+                {creator && <h1>Event created by: {creator.username}</h1>}
               </div>
             </div>
           </div>
