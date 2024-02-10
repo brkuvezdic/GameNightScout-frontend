@@ -23,6 +23,7 @@ export default function CreateListing() {
     genre: "",
     slot: 6,
     ageOver18: false,
+    time: "",
   });
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,9 +48,20 @@ export default function CreateListing() {
       }
 
       setFormData(data);
+      setSelectedGenre(data.genre);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        ageOver18: data.ageOver18,
+      }));
     };
     fetchListing();
   }, [params.listingId]);
+
+  const handleAgeCheckboxChange = (e) => {
+    const isChecked = e.target.checked;
+    setFormData({ ...formData, ageOver18: isChecked });
+  };
+
   const handleImageSubmit = () => {
     if (files.length > 0 && files.length + formData.imageUrls.length <= 3) {
       setUploading(true);
@@ -239,8 +251,8 @@ export default function CreateListing() {
                 type="checkbox"
                 id="ageOver18"
                 className="w-5"
-                onChange={handleChange}
-                value={formData.ageOver18}
+                onChange={handleAgeCheckboxChange}
+                checked={formData.ageOver18}
               />
               <span>Age over 18</span>
             </div>
