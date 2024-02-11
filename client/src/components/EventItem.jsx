@@ -21,9 +21,7 @@ export default function EventItem({ event }) {
           <div className="flex justify-between items-center mt-2">
             <div>
               <p className="text-sm text-gray-600">{event.city}</p>
-              <p className="text-sm">
-                {event.ageOver18 ? "Over 18" : "Under 18"}
-              </p>
+              <p className="text-sm">{event.ageOver18 ? "18+" : "All ages"}</p>
             </div>
           </div>
         </div>

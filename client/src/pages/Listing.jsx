@@ -103,7 +103,7 @@ export default function Listing() {
               <div className="flex items-center">
                 <HiOutlineIdentification className="mr-2 text-gray-600" />
                 <p className="font-semibold">
-                  {listing.ageOver18 ? "Over 18" : "Under 18"}
+                  {listing.ageOver18 ? "18+" : "All ages"}
                 </p>
               </div>
               <div className="flex items-center">
