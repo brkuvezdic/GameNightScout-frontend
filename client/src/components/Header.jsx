@@ -3,7 +3,7 @@ import { GiTabletopPlayers } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import DefaultAvatar from "../components/DefaultAvatar"; // Import the DefaultAvatar component
+import DefaultAvatar from "../components/DefaultAvatar";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -12,7 +12,7 @@ export default function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams();
     urlParams.set("searchTerm", searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
@@ -68,14 +68,14 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <li>
-                {currentUser.avatar ? ( // Check if currentUser has an avatar
+                {currentUser.avatar ? (
                   <img
                     src={currentUser.avatar}
                     alt="User Avatar"
                     className="w-8 h-8 rounded-full"
-                  /> // Display user's avatar
+                  />
                 ) : (
-                  <DefaultAvatar /> // Display default avatar if user doesn't have one
+                  <DefaultAvatar />
                 )}
               </li>
             ) : (
