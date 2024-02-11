@@ -62,6 +62,13 @@ export default function Listing() {
     }
   }, [listing]);
 
+  const handleGoogleMaps = () => {
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      listing.city + " " + listing.address
+    )}`;
+    window.open(googleMapsUrl, "_blank");
+  };
+
   return (
     <main className="flex flex-col items-center justify-start min-h-screen pt-10 bg-gray-100">
       {loading && <p className="text-2xl my-7">Loading...</p>}
@@ -118,6 +125,13 @@ export default function Listing() {
               <div>
                 {creator && <h1>Event created by: {creator.username}</h1>}
               </div>
+
+              <button
+                onClick={handleGoogleMaps}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              >
+                Find event on Google Maps
+              </button>
             </div>
           </div>
         </div>
