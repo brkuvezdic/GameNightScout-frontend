@@ -5,14 +5,15 @@ import EventItem from "../components/EventItem";
 export default function Search() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [filterData, setFilterData] = useState({
+  const initialFilterData = {
     searchTerm: "",
     city: "",
     genre: "",
     ageOver18: false,
     sort: "createdAt",
     order: "desc",
-  });
+  };
+  const [filterData, setFilterData] = useState(initialFilterData);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [availableCities, setAvailableCities] = useState([]);
@@ -102,6 +103,13 @@ export default function Search() {
     setSubmitted(true);
   };
 
+  const handleResetFilters = () => {
+    setFilterData(initialFilterData);
+    const urlParams = new URLSearchParams();
+    navigate(`/search?${urlParams.toString()}`);
+    setSubmitted(true);
+  };
+
   return (
     <div className="flex flex-col md:flex-row bg-gray-100">
       <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen w-full md:w-1/3">
@@ -181,9 +189,18 @@ export default function Search() {
               <option value="createdAt_asc">Oldest first</option>
             </select>
           </div>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg uppercase">
-            Search
-          </button>
+          <div className="flex gap-4">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg uppercase">
+              Search
+            </button>
+            <button
+              type="button"
+              className="bg-gray-500 hover:bg-gray-600 text-white p-3 rounded-lg uppercase"
+              onClick={handleResetFilters}
+            >
+              Reset Filters
+            </button>
+          </div>
         </form>
       </div>
       <div className="w-full md:flex-grow">
