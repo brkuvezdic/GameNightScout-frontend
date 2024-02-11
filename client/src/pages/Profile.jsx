@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import DefaultAvatar from "../components/DefaultAvatar";
+import { FaUser } from "react-icons/fa";
 
 import {
   updateUserStart,
@@ -169,18 +171,18 @@ export default function Profile() {
         />
         <div
           onClick={() => fileRef.current.click()}
-          className="relative rounded-full h-32 w-32 overflow-hidden cursor-pointer self-center mt-2 bg-gray-300"
+          className="relative rounded-full h-32 w-32 overflow-hidden cursor-pointer self-center mt-2 bg-gray-300 flex items-center justify-center"
         >
           {fileUploadError ? (
             <DefaultAvatar />
-          ) : formData.avatar || currentUser.avatar ? (
+          ) : currentUser.avatar ? (
             <img
               src={formData.avatar || currentUser.avatar}
-              className="object-cover w-full h-full"
               alt="User Avatar"
+              className="w-full h-full object-cover"
             />
           ) : (
-            <DefaultAvatar />
+            <FaUser className="text-orange-500 text-6xl" />
           )}
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition duration-300 opacity-0 hover:opacity-100">
             <span className="text-white">Change Avatar</span>

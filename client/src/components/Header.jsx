@@ -3,6 +3,7 @@ import { GiTabletopPlayers } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import DefaultAvatar from "../components/DefaultAvatar"; // Import the DefaultAvatar component
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -49,7 +50,7 @@ export default function Header() {
           </button>
         </form>
 
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 items-center">
           <Link to="/">
             <li>
               <span className="hover:text-orange-500 transition duration-300">
@@ -67,7 +68,15 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <li>
-                <FaUser className="text-orange-500" />
+                {currentUser.avatar ? ( // Check if currentUser has an avatar
+                  <img
+                    src={currentUser.avatar}
+                    alt="User Avatar"
+                    className="w-8 h-8 rounded-full"
+                  /> // Display user's avatar
+                ) : (
+                  <DefaultAvatar /> // Display default avatar if user doesn't have one
+                )}
               </li>
             ) : (
               <li>
