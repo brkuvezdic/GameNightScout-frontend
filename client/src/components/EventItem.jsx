@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
+import { FaCity } from "react-icons/fa";
+import { HiOutlineIdentification } from "react-icons/hi";
 
 export default function EventItem({ event }) {
   console.log("Event added and displayed:", event);
@@ -19,9 +21,13 @@ export default function EventItem({ event }) {
           </div>
           <p className="text-sm text-gray-600 truncate">{event.description}</p>
           <div className="flex justify-between items-center mt-2">
-            <div>
-              <p className="text-sm text-gray-600">{event.city}</p>
-              <p className="text-sm">{event.ageOver18 ? "18+" : "All ages"}</p>
+            <div className="flex items-center text-sm text-gray-600">
+              <FaCity className="h-4 w-4 mr-1" />
+              <p>{event.city}</p>
+            </div>
+            <div className="flex items-center text-sm">
+              <HiOutlineIdentification className="h-4 w-4 mr-1" />
+              <p>{event.ageOver18 ? "18+" : "All ages"}</p>
             </div>
           </div>
         </div>
