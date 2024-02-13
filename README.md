@@ -8,15 +8,11 @@ Mentor: doc. dr. sc. Nikola Tanković (ntankovic.unipu.hr)
 
 Kratki opis funkcionalnosti:
 
-Aplikacija "WinBuddy" služi za traženje suigrača u videoigrama.
+GameNightScout 
+Ciljanja skupina: Osobe koje vole društvene igre i druženja
+2 tipa korisnika: Host(domaćin) i igrači.
 
-Aplikacija WinBuddy služi kao platforma za pronalaženje prijatelja za videoigrice. Platforma je osmišljena tako da korisnik nakon registracije i uređivanja profila, filtrira sve ostale igrače na platformi.
-
-Primjerice, korisnik traži igrače koji igraju League of Legends i F1@2023, koriste Discord i igraju od 21:00 do 23:00.
-
-Koristeći se filtrom, prikazuju se igrači. Također, pritiskom na bilo koji od profila igrača, otvara se tražilica za League of Legends igrače.
-
-Koristeći API od Riot Portala, ostvaruje se komunkacija. Ta komunikacija nam omogućava da pretražimo unosom gamertag-a. Aplikacija može pretraživati samo League of Legends igrače na NA( North America) regiji. Također postoji i dio za pregled najboljeg esports tima 2023
+ Domaćini će imati mogućnost stvaranja događanja za druženje s društvenim igrama, definirajući lokaciju, datum i vrijeme. Igrači će moći pregledavati dostupna događanja koristeći različite filtre, kao što su lokacija, datum, tip društvene igre 
 
 Link na video: https://youtu.be/ACKWMXH5LQA
 
