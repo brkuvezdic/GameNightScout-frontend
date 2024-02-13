@@ -18,8 +18,8 @@ Koristeći se filtrom, prikazuju se igrači. Također, pritiskom na bilo koji od
 
 Koristeći API od Riot Portala, ostvaruje se komunkacija. Ta komunikacija nam omogućava da pretražimo unosom gamertag-a. Aplikacija može pretraživati samo League of Legends igrače na NA( North America) regiji. Također postoji i dio za pregled najboljeg esports tima 2023
 
-Link na video: [https://youtu.be/lJOm3glj0ZE](https://youtu.be/ACKWMXH5LQA)
+Link na video: https://youtu.be/ACKWMXH5LQA
 
-Javni URL aplikacije: [https://win-buddy.vercel.app/](https://gamenightscout-7awh.onrender.com/)
+Javni URL aplikacije: https://gamenightscout-7awh.onrender.com/
 
 Zaduženja (planirana) po članu tima - Branimir Kuveždić izrađuje i implementira cijelokupnu aplikaciju
