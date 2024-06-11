@@ -18,3 +18,5 @@ Kratki opis funkcionalnosti:
 
 
 Javni URL aplikacije: https://gamenightscout-7awh.onrender.com/
+
+[Dokumentacija](https://github.com/brkuvezdic/GameNightScout-frontend/blob/4336d1377f4c8ad315c27674fbe7322be90d3444/Branimir%20Kuve%C5%BEdi%C4%87%20zavr%C5%A1ni%20rad%20GameNightScout.pdf)
