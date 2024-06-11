@@ -1,21 +1,20 @@
-GameNightScout - Sastav tima:Branimir Kuveždić
+Web aplikacija za organiziranje i povezivanje ljubitelja društvenih igara
 
-Fakultet informatike u Puli (https://fipu.unipu.hr/)
+Završni rad autor: Branimir Kuveždić
 
-Kolegij: Web aplikacije (ntankovic.unipu.hr/wa)
+Mentor: doc. dr. sc. Nikola Tanković
 
-Mentor: doc. dr. sc. Nikola Tanković (ntankovic.unipu.hr)
+Komentor: mag. inf. Robert Šajina
+
+Sveučilište Jurja Dobrile u Puli, Fakultet informatike
+
+Sažetak
+
+Cilj završnog rada je napraviti kompletu dokumentaciju Frontend-a (client) i Backend-a (api). Web aplikacija omogućuje korisnicima jednostavno dodavanje i pronalaženje događaja čiji je cilj okupiti ljubitelje društvenih igara. Praćenjem standarda sigurnosti za prijavu i registraciju, korisnici imaju svoj jedinstveni profil pomoću kojega pretražuju ili dodavaju događaje. Nakon dodavanja događaja ili pretraživanja istog, događaji zatim postaju vidljivi svim korisnicima, te je omogućeno i naknadno uređivanje svojega događaja. Ovo intuitivno i jednostavno rješenje je glavni razlog korištenja aplikacije. Api i client zaduženi su da bezprijekorno surađuju i na taj način omoguće brzo i sigurno korištenje svakog dijela web aplikacije   
 
 Kratki opis funkcionalnosti:
 
-GameNightScout 
-Ciljanja skupina: Osobe koje vole društvene igre i druženja
-2 tipa korisnika: Host(domaćin) i igrači.
-
  Domaćini će imati mogućnost stvaranja događanja za druženje s društvenim igrama, definirajući lokaciju, datum i vrijeme. Igrači će moći pregledavati dostupna događanja koristeći različite filtre, kao što su lokacija, datum, tip društvene igre 
 
-Link na video: https://youtu.be/ACKWMXH5LQA
 
 Javni URL aplikacije: https://gamenightscout-7awh.onrender.com/
-
-Zaduženja (planirana) po članu tima - Branimir Kuveždić izrađuje i implementira cijelokupnu aplikaciju
