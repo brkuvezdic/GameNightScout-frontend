@@ -1,22 +1,16 @@
-Web aplikacija za organiziranje i povezivanje ljubitelja društvenih igara
+Web Application for Organizing and Connecting Board Game Enthusiasts
 
-Završni rad autor: Branimir Kuveždić
-
-Mentor: doc. dr. sc. Nikola Tanković
-
-Komentor: mag. inf. Robert Šajina
-
-Sveučilište Jurja Dobrile u Puli, Fakultet informatike
-
-Sažetak
-
-Cilj završnog rada je napraviti kompletu dokumentaciju Frontend-a (client) i Backend-a (api). Web aplikacija omogućuje korisnicima jednostavno dodavanje i pronalaženje događaja čiji je cilj okupiti ljubitelje društvenih igara. Praćenjem standarda sigurnosti za prijavu i registraciju, korisnici imaju svoj jedinstveni profil pomoću kojega pretražuju ili dodavaju događaje. Nakon dodavanja događaja ili pretraživanja istog, događaji zatim postaju vidljivi svim korisnicima, te je omogućeno i naknadno uređivanje svojega događaja. Ovo intuitivno i jednostavno rješenje je glavni razlog korištenja aplikacije. Api i client zaduženi su da bezprijekorno surađuju i na taj način omoguće brzo i sigurno korištenje svakog dijela web aplikacije   
-
-Kratki opis funkcionalnosti:
-
- Domaćini će imati mogućnost stvaranja događanja za druženje s društvenim igrama, definirajući lokaciju, datum i vrijeme. Igrači će moći pregledavati dostupna događanja koristeći različite filtre, kao što su lokacija, datum, tip društvene igre 
+Thesis Author: Branimir Kuveždić
+Mentor: Dr. Nikola Tanković
+Co-Mentor: Robert Šajina, M.Sc.
+University: Juraj Dobrila University of Pula, Faculty of Informatics
 
 
-Javni URL aplikacije: https://gamenightscout-7awh.onrender.com/
 
-[Dokumentacija](https://github.com/brkuvezdic/GameNightScout-frontend/blob/4336d1377f4c8ad315c27674fbe7322be90d3444/Branimir%20Kuve%C5%BEdi%C4%87%20zavr%C5%A1ni%20rad%20GameNightScout.pdf)
+The web application enables users to easily add and find events aimed at bringing together board game enthusiasts. Following security standards for login and registration, each user has a unique profile, which they can use to search for or create events. Once an event is added or searched, it becomes visible to all users, and hosts can later edit their events. This intuitive and straightforward solution is a key reason for using the application. The API and client work seamlessly to provide fast and secure use of every part of the web application.
+
+Brief Overview of Features:
+
+Hosts can create events for board game gatherings, specifying location, date, and time. Players can browse available events using various filters, such as location, date, and board game type.
+
+Public URL for the Application: https://gamenightscout-7awh.onrender.com/
